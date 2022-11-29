@@ -108,7 +108,8 @@ impl Prover {
             total_proofs: Default::default(),
             valid_shares: Default::default(),
             invalid_shares: Default::default(),
-            current_proof_target: Default::default(),
+            // current_proof_target: Default::default(),
+            current_proof_target: Arc::new(AtomicU64::new(1000)),
             coinbase_puzzle,
         });
 
@@ -232,7 +233,7 @@ impl Prover {
     }
 
     fn new_target(&self, proof_target: u64) {
-        self.current_proof_target.store(proof_target, Ordering::SeqCst);
+        // self.current_proof_target.store(proof_target, Ordering::SeqCst);
         info!("New proof target: {}", proof_target);
     }
 
@@ -289,8 +290,8 @@ impl Prover {
                                         &epoch_challenge,
                                         address,
                                         nonce,
-                                        // Option::from(current_proof_target.load(Ordering::SeqCst)),
-                                        None,
+                                        Option::from(current_proof_target.load(Ordering::SeqCst)),
+                                        // None,
                                     )
                                 })
                             })
