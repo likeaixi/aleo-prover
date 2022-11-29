@@ -109,7 +109,7 @@ impl Prover {
             valid_shares: Default::default(),
             invalid_shares: Default::default(),
             // current_proof_target: Default::default(),
-            current_proof_target: Arc::new(AtomicU64::new(1000)),
+            current_proof_target: Arc::new(AtomicU64::new(100000)),
             coinbase_puzzle,
         });
 
