@@ -289,7 +289,8 @@ impl Prover {
                                         &epoch_challenge,
                                         address,
                                         nonce,
-                                        Option::from(current_proof_target.load(Ordering::SeqCst)),
+                                        // Option::from(current_proof_target.load(Ordering::SeqCst)),
+                                        None,
                                     )
                                 })
                             })
@@ -304,13 +305,13 @@ impl Prover {
                                     break;
                                 }
                                 // Ensure the share difficulty target is met.
-                                let proof_difficulty =
-                                    u64::MAX / sha256d_to_u64(&*solution.commitment().to_bytes_le().unwrap());
-
-                                info!(
-                                    "Solution found for epoch {} with difficulty {}",
-                                    epoch_number, proof_difficulty
-                                );
+                                // let proof_difficulty =
+                                //     u64::MAX / sha256d_to_u64(&*solution.commitment().to_bytes_le().unwrap());
+                                //
+                                // info!(
+                                //     "Solution found for epoch {} with difficulty {}",
+                                //     epoch_number, proof_difficulty
+                                // );
 
                                 // Send a `PoolResponse` to the operator.
                                 let message = Message::UnconfirmedSolution(UnconfirmedSolution {
