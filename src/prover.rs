@@ -254,11 +254,6 @@ impl Prover {
         let coinbase_puzzle = self.coinbase_puzzle.clone();
 
         task::spawn(async move {
-            let _ = task::spawn(async move {
-                let mut joins = Vec::new();
-                if let Some(_) = cuda {
-                    warn!("This version of the prover is only using the first GPU");
-                }
                 for (_, tp) in thread_pools.iter().enumerate() {
                     let current_proof_target = current_proof_target.clone();
                     let current_epoch = current_epoch.clone();
@@ -329,8 +324,6 @@ impl Prover {
                         }
                     }));
                 }
-                futures::future::join_all(joins).await;
-            });
         });
     }
 }
