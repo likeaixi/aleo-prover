@@ -14,7 +14,7 @@ use rayon::{ThreadPool, ThreadPoolBuilder};
 use snarkos_node_messages::{Data, UnconfirmedSolution};
 use snarkvm::{
     console::account::address::Address,
-    prelude::{CoinbasePuzzle, Testnet3, ToBytes},
+    prelude::{CoinbasePuzzle, Testnet3},
     synthesizer::{EpochChallenge, PuzzleConfig, UniversalSRS},
 };
 use snarkvm_algorithms::crypto_hash::sha256d_to_u64;
@@ -250,7 +250,6 @@ impl Prover {
         let client = self.client.clone();
         let thread_pools = self.thread_pools.clone();
         let total_proofs = self.total_proofs.clone();
-        let cuda = self.cuda.clone();
         let coinbase_puzzle = self.coinbase_puzzle.clone();
 
         task::spawn(async move {
