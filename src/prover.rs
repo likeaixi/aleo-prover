@@ -263,7 +263,7 @@ impl Prover {
                     let total_proofs = total_proofs.clone();
                     let tp = tp.clone();
                     let coinbase_puzzle = coinbase_puzzle.clone();
-                    joins.push(task::spawn(async move {
+                    task::spawn(async move {
                         loop {
                             let current_proof_target = current_proof_target.clone();
                             let epoch_challenge = epoch_challenge.clone();
@@ -322,7 +322,7 @@ impl Prover {
                                 total_proofs.fetch_add(1, Ordering::SeqCst);
                             }
                         }
-                    }));
+                    });
                 }
         });
     }
