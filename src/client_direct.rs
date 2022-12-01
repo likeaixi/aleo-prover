@@ -118,22 +118,22 @@ pub fn start(prover_sender: Arc<Sender<ProverEvent>>, client: Arc<DirectClient>)
         task::spawn(async move {
 
             let degree= (1 << 13) - 1;
-            let mut epoch_num = 512 as u32;
-
-            if let Err(e) = prover_sender.send(ProverEvent::NewTarget(1000 as u64)).await {
-                error!("Error sending new target to prover: {}", e);
-            } else {
-                debug!("Sent new target to prover");
-            }
+            let mut epoch_num = 0 as u32;
 
             loop {
+                if let Err(e) = prover_sender.send(ProverEvent::NewTarget(1000 as u64)).await {
+                    error!("Error sending new target to prover: {}", e);
+                } else {
+                    debug!("Sent new target to prover");
+                }
+                epoch_num += 1;
                 let epoch_challenge :EpochChallenge<Testnet3> = EpochChallenge::new(epoch_num, Default::default(), degree).unwrap();
                 if let Err(e) = prover_sender.send(ProverEvent::NewWork(epoch_challenge.epoch_number(), epoch_challenge, client.address)).await {
                     error!("Error sending new work to prover: {}", e);
                 } else {
                     debug!("Sent new work to prover");
                 }
-                sleep(Duration::from_millis(100)).await;
+                sleep(Duration::from_secs(60*60)).await;
             }
         });
 
