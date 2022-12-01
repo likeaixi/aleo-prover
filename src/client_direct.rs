@@ -21,7 +21,7 @@ use snarkos_node_messages::{
 };
 use snarkvm::{
     console::account::address::Address,
-    prelude::{Block, FromBytes, Network, Testnet3},
+    prelude::{Block, FromBytes, Network, Testnet3},synthesizer::EpochChallenge,
 };
 use tokio::{
     net::{TcpListener, TcpStream},
@@ -115,167 +115,189 @@ pub fn start(prover_sender: Arc<Sender<ProverEvent>>, client: Arc<DirectClient>)
             }
         });
 
-        debug!("Created coinbase puzzle request task");
-        loop {
-            info!("Connecting to server...");
-            match timeout(Duration::from_secs(5), TcpStream::connect(&client.server)).await {
-                Ok(socket) => match socket {
-                    Ok(socket) => {
-                        info!("Connected to {}", client.server);
-                        let mut framed = Framed::new(socket, MessageCodec::default());
-                        let challenge_request = Message::ChallengeRequest(ChallengeRequest {
-                            version: Message::VERSION,
-                            fork_depth: 4096,
-                            node_type: NodeType::Prover,
-                            status: Status::Ready,
-                            listener_port: 4140,
-                        });
-                        if let Err(e) = framed.send(challenge_request).await {
-                            error!("Error sending challenge request: {}", e);
-                        } else {
-                            debug!("Sent challenge request");
-                        }
-                        let receiver = &mut *receiver.lock().await;
-                        loop {
-                            tokio::select! {
-                                Some(message) = receiver.recv() => {
-                                    let m = message.clone();
-                                    let name = m.name();
-                                    debug!("Sending {} to beacon", name);
-                                    if let Err(e) = framed.send(message).await {
-                                        error!("Error sending {}: {:?}", name, e);
-                                    }
-                                }
-                                result = framed.next() => match result {
-                                    Some(Ok(message)) => {
-                                        debug!("Received {} from beacon", message.name());
-                                        match message {
-                                            Message::ChallengeRequest(ChallengeRequest {
-                                                version,
-                                                fork_depth: _,
-                                                node_type,
-                                                ..
-                                            }) => {
-                                                if version < Message::VERSION {
-                                                    error!("Peer is running an older version of the protocol");
-                                                    sleep(Duration::from_secs(5)).await;
-                                                    break;
-                                                }
-                                                if node_type != NodeType::Beacon && node_type != NodeType::Validator {
-                                                    error!("Peer is not a beacon or validator");
-                                                    sleep(Duration::from_secs(5)).await;
-                                                    break;
-                                                }
-                                                let response = Message::ChallengeResponse(ChallengeResponse {
-                                                    header: Data::Object(genesis_header),
-                                                });
-                                                if let Err(e) = framed.send(response).await {
-                                                    error!("Error sending challenge response: {:?}", e);
-                                                } else {
-                                                    debug!("Sent challenge response");
-                                                }
-                                            }
-                                            Message::ChallengeResponse(message) => {
-                                                // Perform the deferred non-blocking deserialization of the block header.
-                                                let block_header = match message.header.deserialize().await {
-                                                    Ok(block_header) => block_header,
-                                                    Err(error) => {
-                                                        error!("Error deserializing block header: {:?}", error);
-                                                        sleep(Duration::from_secs(5)).await;
-                                                        break;
-                                                    }
-                                                };
-                                                match block_header == genesis_header {
-                                                    true => {
-                                                        // Send the first `Ping` message to the peer.
-                                                        let message = Message::Ping(Ping {
-                                                            version: Message::VERSION,
-                                                            fork_depth: 4096,
-                                                            node_type: NodeType::Prover,
-                                                            status: Status::Ready,
-                                                        });
-                                                        if let Err(e) = framed.send(message).await {
-                                                            error!("Error sending ping: {:?}", e);
-                                                        } else {
-                                                            debug!("Sent ping");
-                                                        }
-                                                    }
-                                                    false => {
-                                                        error!("Peer has a different genesis block");
-                                                        sleep(Duration::from_secs(5)).await;
-                                                        break;
-                                                    }
-                                                }
-                                            }
-                                            Message::Ping(_) => {
-                                                let pong = Message::Pong(Pong { is_fork: None });
-                                                if let Err(e) = framed.send(pong).await {
-                                                    error!("Error sending pong: {:?}", e);
-                                                } else {
-                                                    debug!("Sent pong");
-                                                }
-                                            }
-                                            Message::Pong(_) => {
-                                                connected.store(true, Ordering::SeqCst);
-                                                if let Err(e) = client.sender().send(Message::PuzzleRequest(PuzzleRequest {})).await {
-                                                    error!("Failed to send puzzle request: {}", e);
-                                                }
-                                            }
-                                            Message::PuzzleResponse(PuzzleResponse {
-                                                epoch_challenge, block
-                                            }) => {
-                                                let block = match block.deserialize().await {
-                                                    Ok(block) => block,
-                                                    Err(error) => {
-                                                        error!("Error deserializing block: {:?}", error);
-                                                        sleep(Duration::from_secs(5)).await;
-                                                        break;
-                                                    }
-                                                };
-                                                if let Err(e) = prover_sender.send(ProverEvent::NewTarget(block.proof_target())).await {
-                                                    error!("Error sending new target to prover: {}", e);
-                                                } else {
-                                                    debug!("Sent new target to prover");
-                                                }
-                                                if let Err(e) = prover_sender.send(ProverEvent::NewWork(epoch_challenge.epoch_number(), epoch_challenge, client.address)).await {
-                                                    error!("Error sending new work to prover: {}", e);
-                                                } else {
-                                                    debug!("Sent new work to prover");
-                                                }
-                                            }
-                                            Message::Disconnect(message) => {
-                                                error!("Peer disconnected: {:?}", message.reason);
-                                                sleep(Duration::from_secs(5)).await;
-                                                break;
-                                            }
-                                            _ => {
-                                                debug!("Unhandled message: {}", message.name());
-                                            }
-                                        }
-                                    }
-                                    Some(Err(e)) => {
-                                        warn!("Failed to read the message: {:?}", e);
-                                    }
-                                    None => {
-                                        error!("Disconnected from beacon");
-                                        connected.store(false, Ordering::SeqCst);
-                                        sleep(Duration::from_secs(5)).await;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    Err(e) => {
-                        error!("Failed to connect to beacon: {}", e);
-                        sleep(Duration::from_secs(5)).await;
-                    }
-                },
-                Err(_) => {
-                    error!("Failed to connect to beacon: Timed out");
-                    sleep(Duration::from_secs(5)).await;
+        task::spawn(async move {
+
+            let degree= (1 << 13) - 1;
+            let mut epoch_num = 0 as u32;
+
+            loop {
+                if let Err(e) = prover_sender.send(ProverEvent::NewTarget(1000 as u64)).await {
+                    error!("Error sending new target to prover: {}", e);
+                } else {
+                    debug!("Sent new target to prover");
                 }
+                epoch_num += 1;
+                let epoch_challenge :EpochChallenge<Testnet3> = EpochChallenge::new(epoch_num, Default::default(), degree).unwrap();
+                if let Err(e) = prover_sender.send(ProverEvent::NewWork(epoch_challenge.epoch_number(), epoch_challenge, client.address)).await {
+                    error!("Error sending new work to prover: {}", e);
+                } else {
+                    debug!("Sent new work to prover");
+                }
+                sleep(Duration::from_secs(60*60)).await;
             }
-        }
+        });
+
+        // debug!("Created coinbase puzzle request task");
+        // loop {
+        //     info!("Connecting to server...");
+        //     match timeout(Duration::from_secs(5), TcpStream::connect(&client.server)).await {
+        //         Ok(socket) => match socket {
+        //             Ok(socket) => {
+        //                 info!("Connected to {}", client.server);
+        //                 let mut framed = Framed::new(socket, MessageCodec::default());
+        //                 let challenge_request = Message::ChallengeRequest(ChallengeRequest {
+        //                     version: Message::VERSION,
+        //                     fork_depth: 4096,
+        //                     node_type: NodeType::Prover,
+        //                     status: Status::Ready,
+        //                     listener_port: 4140,
+        //                 });
+        //                 if let Err(e) = framed.send(challenge_request).await {
+        //                     error!("Error sending challenge request: {}", e);
+        //                 } else {
+        //                     debug!("Sent challenge request");
+        //                 }
+        //                 let receiver = &mut *receiver.lock().await;
+        //                 loop {
+        //                     tokio::select! {
+        //                         Some(message) = receiver.recv() => {
+        //                             let m = message.clone();
+        //                             let name = m.name();
+        //                             debug!("Sending {} to beacon", name);
+        //                             if let Err(e) = framed.send(message).await {
+        //                                 error!("Error sending {}: {:?}", name, e);
+        //                             }
+        //                         }
+        //                         result = framed.next() => match result {
+        //                             Some(Ok(message)) => {
+        //                                 debug!("Received {} from beacon", message.name());
+        //                                 match message {
+        //                                     Message::ChallengeRequest(ChallengeRequest {
+        //                                         version,
+        //                                         fork_depth: _,
+        //                                         node_type,
+        //                                         ..
+        //                                     }) => {
+        //                                         if version < Message::VERSION {
+        //                                             error!("Peer is running an older version of the protocol");
+        //                                             sleep(Duration::from_secs(5)).await;
+        //                                             break;
+        //                                         }
+        //                                         if node_type != NodeType::Beacon && node_type != NodeType::Validator {
+        //                                             error!("Peer is not a beacon or validator");
+        //                                             sleep(Duration::from_secs(5)).await;
+        //                                             break;
+        //                                         }
+        //                                         let response = Message::ChallengeResponse(ChallengeResponse {
+        //                                             header: Data::Object(genesis_header),
+        //                                         });
+        //                                         if let Err(e) = framed.send(response).await {
+        //                                             error!("Error sending challenge response: {:?}", e);
+        //                                         } else {
+        //                                             debug!("Sent challenge response");
+        //                                         }
+        //                                     }
+        //                                     Message::ChallengeResponse(message) => {
+        //                                         // Perform the deferred non-blocking deserialization of the block header.
+        //                                         let block_header = match message.header.deserialize().await {
+        //                                             Ok(block_header) => block_header,
+        //                                             Err(error) => {
+        //                                                 error!("Error deserializing block header: {:?}", error);
+        //                                                 sleep(Duration::from_secs(5)).await;
+        //                                                 break;
+        //                                             }
+        //                                         };
+        //                                         match block_header == genesis_header {
+        //                                             true => {
+        //                                                 // Send the first `Ping` message to the peer.
+        //                                                 let message = Message::Ping(Ping {
+        //                                                     version: Message::VERSION,
+        //                                                     fork_depth: 4096,
+        //                                                     node_type: NodeType::Prover,
+        //                                                     status: Status::Ready,
+        //                                                 });
+        //                                                 if let Err(e) = framed.send(message).await {
+        //                                                     error!("Error sending ping: {:?}", e);
+        //                                                 } else {
+        //                                                     debug!("Sent ping");
+        //                                                 }
+        //                                             }
+        //                                             false => {
+        //                                                 error!("Peer has a different genesis block");
+        //                                                 sleep(Duration::from_secs(5)).await;
+        //                                                 break;
+        //                                             }
+        //                                         }
+        //                                     }
+        //                                     Message::Ping(_) => {
+        //                                         let pong = Message::Pong(Pong { is_fork: None });
+        //                                         if let Err(e) = framed.send(pong).await {
+        //                                             error!("Error sending pong: {:?}", e);
+        //                                         } else {
+        //                                             debug!("Sent pong");
+        //                                         }
+        //                                     }
+        //                                     Message::Pong(_) => {
+        //                                         connected.store(true, Ordering::SeqCst);
+        //                                         if let Err(e) = client.sender().send(Message::PuzzleRequest(PuzzleRequest {})).await {
+        //                                             error!("Failed to send puzzle request: {}", e);
+        //                                         }
+        //                                     }
+        //                                     Message::PuzzleResponse(PuzzleResponse {
+        //                                         epoch_challenge, block
+        //                                     }) => {
+        //                                         let block = match block.deserialize().await {
+        //                                             Ok(block) => block,
+        //                                             Err(error) => {
+        //                                                 error!("Error deserializing block: {:?}", error);
+        //                                                 sleep(Duration::from_secs(5)).await;
+        //                                                 break;
+        //                                             }
+        //                                         };
+        //                                         if let Err(e) = prover_sender.send(ProverEvent::NewTarget(block.proof_target())).await {
+        //                                             error!("Error sending new target to prover: {}", e);
+        //                                         } else {
+        //                                             debug!("Sent new target to prover");
+        //                                         }
+        //                                         if let Err(e) = prover_sender.send(ProverEvent::NewWork(epoch_challenge.epoch_number(), epoch_challenge, client.address)).await {
+        //                                             error!("Error sending new work to prover: {}", e);
+        //                                         } else {
+        //                                             debug!("Sent new work to prover");
+        //                                         }
+        //                                     }
+        //                                     Message::Disconnect(message) => {
+        //                                         error!("Peer disconnected: {:?}", message.reason);
+        //                                         sleep(Duration::from_secs(5)).await;
+        //                                         break;
+        //                                     }
+        //                                     _ => {
+        //                                         debug!("Unhandled message: {}", message.name());
+        //                                     }
+        //                                 }
+        //                             }
+        //                             Some(Err(e)) => {
+        //                                 warn!("Failed to read the message: {:?}", e);
+        //                             }
+        //                             None => {
+        //                                 error!("Disconnected from beacon");
+        //                                 connected.store(false, Ordering::SeqCst);
+        //                                 sleep(Duration::from_secs(5)).await;
+        //                                 break;
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //             Err(e) => {
+        //                 error!("Failed to connect to beacon: {}", e);
+        //                 sleep(Duration::from_secs(5)).await;
+        //             }
+        //         },
+        //         Err(_) => {
+        //             error!("Failed to connect to beacon: Timed out");
+        //             sleep(Duration::from_secs(5)).await;
+        //         }
+        //     }
+        // }
     });
 }

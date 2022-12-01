@@ -291,14 +291,14 @@ impl Prover {
                             })
                             .await
                             {
-                                if epoch_number != current_epoch.load(Ordering::SeqCst) {
-                                    debug!(
-                                        "Terminating stale work: current {} latest {}",
-                                        epoch_number,
-                                        current_epoch.load(Ordering::SeqCst)
-                                    );
-                                    break;
-                                }
+                                // if epoch_number != current_epoch.load(Ordering::SeqCst) {
+                                //     debug!(
+                                //         "Terminating stale work: current {} latest {}",
+                                //         epoch_number,
+                                //         current_epoch.load(Ordering::SeqCst)
+                                //     );
+                                //     break;
+                                // }
                                 // Ensure the share difficulty target is met.
                                 // let proof_difficulty =
                                 //     u64::MAX / sha256d_to_u64(&*solution.commitment().to_bytes_le().unwrap());
@@ -309,13 +309,13 @@ impl Prover {
                                 // );
 
                                 // Send a `PoolResponse` to the operator.
-                                let message = Message::UnconfirmedSolution(UnconfirmedSolution {
-                                    puzzle_commitment: solution.commitment(),
-                                    solution: Data::Object(solution),
-                                });
-                                if let Err(error) = client.sender().send(message).await {
-                                    error!("Failed to send PoolResponse: {}", error);
-                                }
+                                // let message = Message::UnconfirmedSolution(UnconfirmedSolution {
+                                //     puzzle_commitment: solution.commitment(),
+                                //     solution: Data::Object(solution),
+                                // });
+                                // if let Err(error) = client.sender().send(message).await {
+                                //     error!("Failed to send PoolResponse: {}", error);
+                                // }
                                 total_proofs.fetch_add(1, Ordering::SeqCst);
                             } else {
                                 total_proofs.fetch_add(1, Ordering::SeqCst);
