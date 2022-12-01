@@ -65,7 +65,7 @@ dependencies = [
 
 [[package]]
 name = "aleo-prover"
-version = "0.4.4"
+version = "0.4.5"
 dependencies = [
  "ansi_term",
  "anyhow",
@@ -83,8 +83,8 @@ dependencies = [
  "rayon",
  "serde_json",
  "snarkos-node-messages",
- "snarkvm 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-algorithms 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm",
+ "snarkvm-algorithms",
  "tokio",
  "tokio-stream",
  "tokio-util",
@@ -1992,38 +1992,11 @@ dependencies = [
  "kadmium",
  "rayon",
  "serde",
- "snarkvm 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
+ "snarkvm",
  "snow",
  "tokio",
  "tokio-util",
  "tracing",
-]
-
-[[package]]
-name = "snarkvm"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "anyhow",
- "clap 3.2.23",
- "colored",
- "indexmap",
- "once_cell",
- "parking_lot",
- "rand",
- "rayon",
- "self_update",
- "serde_json",
- "snarkvm-algorithms 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-fields 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-parameters 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-synthesizer 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "thiserror",
- "ureq",
- "walkdir",
 ]
 
 [[package]]
@@ -2041,43 +2014,16 @@ dependencies = [
  "rayon",
  "self_update",
  "serde_json",
- "snarkvm-algorithms 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-fields 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-parameters 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-synthesizer 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
+ "snarkvm-algorithms",
+ "snarkvm-circuit",
+ "snarkvm-console",
+ "snarkvm-fields",
+ "snarkvm-parameters",
+ "snarkvm-synthesizer",
+ "snarkvm-utilities",
  "thiserror",
  "ureq",
  "walkdir",
-]
-
-[[package]]
-name = "snarkvm-algorithms"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "aleo-std",
- "anyhow",
- "hashbrown 0.13.1",
- "hex",
- "itertools",
- "parking_lot",
- "rand",
- "rand_chacha",
- "rand_core",
- "rayon",
- "serde",
- "sha2",
- "smallvec",
- "snarkvm-cuda",
- "snarkvm-curves 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-fields 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-parameters 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-r1cs 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "thiserror",
 ]
 
 [[package]]
@@ -2099,11 +2045,12 @@ dependencies = [
  "serde",
  "sha2",
  "smallvec",
- "snarkvm-curves 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-fields 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-parameters 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-r1cs 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
+ "snarkvm-cuda",
+ "snarkvm-curves",
+ "snarkvm-fields",
+ "snarkvm-parameters",
+ "snarkvm-r1cs",
+ "snarkvm-utilities",
  "thiserror",
  "tokio-rayon",
 ]
@@ -2111,40 +2058,15 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit"
 version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-account 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-algorithms 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-collections 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-network 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-program 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
-]
-
-[[package]]
-name = "snarkvm-circuit"
-version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-account 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-algorithms 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-collections 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-network 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-program 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-account"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-algorithms 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-network 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-account 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-account",
+ "snarkvm-circuit-algorithms",
+ "snarkvm-circuit-collections",
+ "snarkvm-circuit-environment",
+ "snarkvm-circuit-network",
+ "snarkvm-circuit-program",
+ "snarkvm-circuit-types",
 ]
 
 [[package]]
@@ -2152,20 +2074,10 @@ name = "snarkvm-circuit-account"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-algorithms 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-network 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-account 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-algorithms"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-types 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-algorithms 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-fields 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-algorithms",
+ "snarkvm-circuit-network",
+ "snarkvm-circuit-types",
+ "snarkvm-console-account",
 ]
 
 [[package]]
@@ -2173,19 +2085,9 @@ name = "snarkvm-circuit-algorithms"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-types 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-algorithms 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-fields 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-collections"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-algorithms 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-collections 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-types",
+ "snarkvm-console-algorithms",
+ "snarkvm-fields",
 ]
 
 [[package]]
@@ -2193,27 +2095,9 @@ name = "snarkvm-circuit-collections"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-algorithms 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-collections 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-environment"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "indexmap",
- "itertools",
- "nom",
- "num-traits",
- "once_cell",
- "snarkvm-circuit-environment-witness 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-network 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-curves 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-fields 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-r1cs 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-algorithms",
+ "snarkvm-circuit-types",
+ "snarkvm-console-collections",
 ]
 
 [[package]]
@@ -2226,18 +2110,13 @@ dependencies = [
  "nom",
  "num-traits",
  "once_cell",
- "snarkvm-circuit-environment-witness 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-network 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-curves 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-fields 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-r1cs 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
+ "snarkvm-circuit-environment-witness",
+ "snarkvm-console-network",
+ "snarkvm-curves",
+ "snarkvm-fields",
+ "snarkvm-r1cs",
+ "snarkvm-utilities",
 ]
-
-[[package]]
-name = "snarkvm-circuit-environment-witness"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
 
 [[package]]
 name = "snarkvm-circuit-environment-witness"
@@ -2247,36 +2126,12 @@ source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-t
 [[package]]
 name = "snarkvm-circuit-network"
 version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-algorithms 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-collections 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-network 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
-]
-
-[[package]]
-name = "snarkvm-circuit-network"
-version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-algorithms 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-collections 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-network 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-program"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-account 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-collections 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-network 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-program 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-algorithms",
+ "snarkvm-circuit-collections",
+ "snarkvm-circuit-types",
+ "snarkvm-console-network",
 ]
 
 [[package]]
@@ -2284,27 +2139,12 @@ name = "snarkvm-circuit-program"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-account 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-collections 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-network 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-program 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-types"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-address 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-group 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-integers 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-scalar 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-string 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-account",
+ "snarkvm-circuit-collections",
+ "snarkvm-circuit-network",
+ "snarkvm-circuit-types",
+ "snarkvm-console-program",
+ "snarkvm-utilities",
 ]
 
 [[package]]
@@ -2312,27 +2152,14 @@ name = "snarkvm-circuit-types"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-address 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-group 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-integers 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-scalar 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-string 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-types-address"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-group 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-scalar 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-address 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-environment",
+ "snarkvm-circuit-types-address",
+ "snarkvm-circuit-types-boolean",
+ "snarkvm-circuit-types-field",
+ "snarkvm-circuit-types-group",
+ "snarkvm-circuit-types-integers",
+ "snarkvm-circuit-types-scalar",
+ "snarkvm-circuit-types-string",
 ]
 
 [[package]]
@@ -2340,21 +2167,12 @@ name = "snarkvm-circuit-types-address"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-group 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-scalar 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-address 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-types-boolean"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-environment",
+ "snarkvm-circuit-types-boolean",
+ "snarkvm-circuit-types-field",
+ "snarkvm-circuit-types-group",
+ "snarkvm-circuit-types-scalar",
+ "snarkvm-console-types-address",
 ]
 
 [[package]]
@@ -2362,18 +2180,8 @@ name = "snarkvm-circuit-types-boolean"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-types-field"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-environment",
+ "snarkvm-console-types-boolean",
 ]
 
 [[package]]
@@ -2381,21 +2189,9 @@ name = "snarkvm-circuit-types-field"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-types-group"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-scalar 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-group 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-environment",
+ "snarkvm-circuit-types-boolean",
+ "snarkvm-console-types-field",
 ]
 
 [[package]]
@@ -2403,22 +2199,11 @@ name = "snarkvm-circuit-types-group"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-scalar 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-group 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-types-integers"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-integers 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-environment",
+ "snarkvm-circuit-types-boolean",
+ "snarkvm-circuit-types-field",
+ "snarkvm-circuit-types-scalar",
+ "snarkvm-console-types-group",
 ]
 
 [[package]]
@@ -2426,21 +2211,10 @@ name = "snarkvm-circuit-types-integers"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-integers 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-types-scalar"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-scalar 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-environment",
+ "snarkvm-circuit-types-boolean",
+ "snarkvm-circuit-types-field",
+ "snarkvm-console-types-integers",
 ]
 
 [[package]]
@@ -2448,22 +2222,10 @@ name = "snarkvm-circuit-types-scalar"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-scalar 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-circuit-types-string"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit-types-integers 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-string 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-environment",
+ "snarkvm-circuit-types-boolean",
+ "snarkvm-circuit-types-field",
+ "snarkvm-console-types-scalar",
 ]
 
 [[package]]
@@ -2471,24 +2233,11 @@ name = "snarkvm-circuit-types-string"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-circuit-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit-types-integers 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-string 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-console-account 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-algorithms 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-collections 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-network 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-program 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-circuit-environment",
+ "snarkvm-circuit-types-boolean",
+ "snarkvm-circuit-types-field",
+ "snarkvm-circuit-types-integers",
+ "snarkvm-console-types-string",
 ]
 
 [[package]]
@@ -2496,22 +2245,12 @@ name = "snarkvm-console"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-console-account 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-algorithms 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-collections 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-network 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-program 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-account"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "bs58",
- "snarkvm-console-network 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-console-account",
+ "snarkvm-console-algorithms",
+ "snarkvm-console-collections",
+ "snarkvm-console-network",
+ "snarkvm-console-program",
+ "snarkvm-console-types",
 ]
 
 [[package]]
@@ -2520,20 +2259,8 @@ version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
  "bs58",
- "snarkvm-console-network 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-algorithms"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "blake2s_simd",
- "smallvec",
- "snarkvm-console-types 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-fields 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-console-network",
+ "snarkvm-console-types",
 ]
 
 [[package]]
@@ -2543,20 +2270,9 @@ source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-t
 dependencies = [
  "blake2s_simd",
  "smallvec",
- "snarkvm-console-types 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-fields 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-collections"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "aleo-std",
- "rayon",
- "snarkvm-console-algorithms 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-console-types",
+ "snarkvm-fields",
+ "snarkvm-utilities",
 ]
 
 [[package]]
@@ -2566,31 +2282,8 @@ source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-t
 dependencies = [
  "aleo-std",
  "rayon",
- "snarkvm-console-algorithms 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-network"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "anyhow",
- "indexmap",
- "itertools",
- "lazy_static",
- "once_cell",
- "paste",
- "serde",
- "snarkvm-algorithms 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-algorithms 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-collections 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-curves 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-fields 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-parameters 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-console-algorithms",
+ "snarkvm-console-types",
 ]
 
 [[package]]
@@ -2605,32 +2298,15 @@ dependencies = [
  "once_cell",
  "paste",
  "serde",
- "snarkvm-algorithms 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-algorithms 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-collections 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-curves 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-fields 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-parameters 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-network-environment"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "anyhow",
- "bech32",
- "itertools",
- "nom",
- "num-traits",
- "rand",
- "serde",
- "snarkvm-curves 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-fields 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-algorithms",
+ "snarkvm-console-algorithms",
+ "snarkvm-console-collections",
+ "snarkvm-console-network-environment",
+ "snarkvm-console-types",
+ "snarkvm-curves",
+ "snarkvm-fields",
+ "snarkvm-parameters",
+ "snarkvm-utilities",
 ]
 
 [[package]]
@@ -2645,27 +2321,9 @@ dependencies = [
  "num-traits",
  "rand",
  "serde",
- "snarkvm-curves 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-fields 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-program"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "enum_index",
- "enum_index_derive",
- "indexmap",
- "num-derive",
- "num-traits",
- "once_cell",
- "serde_json",
- "snarkvm-console-account 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-collections 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-network 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-curves",
+ "snarkvm-fields",
+ "snarkvm-utilities",
 ]
 
 [[package]]
@@ -2680,25 +2338,10 @@ dependencies = [
  "num-traits",
  "once_cell",
  "serde_json",
- "snarkvm-console-account 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-collections 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-network 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-types"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-address 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-group 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-integers 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-scalar 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-string 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-console-account",
+ "snarkvm-console-collections",
+ "snarkvm-console-network",
+ "snarkvm-console-types",
 ]
 
 [[package]]
@@ -2706,25 +2349,14 @@ name = "snarkvm-console-types"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-address 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-group 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-integers 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-scalar 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-string 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-types-address"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-group 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-console-network-environment",
+ "snarkvm-console-types-address",
+ "snarkvm-console-types-boolean",
+ "snarkvm-console-types-field",
+ "snarkvm-console-types-group",
+ "snarkvm-console-types-integers",
+ "snarkvm-console-types-scalar",
+ "snarkvm-console-types-string",
 ]
 
 [[package]]
@@ -2732,18 +2364,10 @@ name = "snarkvm-console-types-address"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-group 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-types-boolean"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-console-network-environment",
+ "snarkvm-console-types-boolean",
+ "snarkvm-console-types-field",
+ "snarkvm-console-types-group",
 ]
 
 [[package]]
@@ -2751,16 +2375,7 @@ name = "snarkvm-console-types-boolean"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-types-field"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-console-network-environment",
 ]
 
 [[package]]
@@ -2768,19 +2383,8 @@ name = "snarkvm-console-types-field"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-types-group"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-scalar 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-console-network-environment",
+ "snarkvm-console-types-boolean",
 ]
 
 [[package]]
@@ -2788,20 +2392,10 @@ name = "snarkvm-console-types-group"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-scalar 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-types-integers"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-console-network-environment",
+ "snarkvm-console-types-boolean",
+ "snarkvm-console-types-field",
+ "snarkvm-console-types-scalar",
 ]
 
 [[package]]
@@ -2809,19 +2403,9 @@ name = "snarkvm-console-types-integers"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-types-scalar"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-console-network-environment",
+ "snarkvm-console-types-boolean",
+ "snarkvm-console-types-field",
 ]
 
 [[package]]
@@ -2829,20 +2413,9 @@ name = "snarkvm-console-types-scalar"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
-]
-
-[[package]]
-name = "snarkvm-console-types-string"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console-types-integers 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-console-network-environment",
+ "snarkvm-console-types-boolean",
+ "snarkvm-console-types-field",
 ]
 
 [[package]]
@@ -2850,16 +2423,16 @@ name = "snarkvm-console-types-string"
 version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
- "snarkvm-console-network-environment 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-boolean 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-field 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console-types-integers 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
+ "snarkvm-console-network-environment",
+ "snarkvm-console-types-boolean",
+ "snarkvm-console-types-field",
+ "snarkvm-console-types-integers",
 ]
 
 [[package]]
 name = "snarkvm-cuda"
 version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
+source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
  "blst",
  "cc",
@@ -2870,43 +2443,13 @@ dependencies = [
 [[package]]
 name = "snarkvm-curves"
 version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "rand",
- "rustc_version",
- "serde",
- "snarkvm-fields 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "thiserror",
-]
-
-[[package]]
-name = "snarkvm-curves"
-version = "0.9.8"
 source = "git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio#5ee73ebae80b50bf9379f4623886527d8bf4ab05"
 dependencies = [
  "rand",
  "rustc_version",
  "serde",
- "snarkvm-fields 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "thiserror",
-]
-
-[[package]]
-name = "snarkvm-fields"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "aleo-std",
- "anyhow",
- "derivative",
- "itertools",
- "num-traits",
- "rand",
- "rayon",
- "serde",
- "snarkvm-utilities 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-fields",
+ "snarkvm-utilities",
  "thiserror",
 ]
 
@@ -2923,32 +2466,7 @@ dependencies = [
  "rand",
  "rayon",
  "serde",
- "snarkvm-utilities 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "thiserror",
-]
-
-[[package]]
-name = "snarkvm-parameters"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "aleo-std",
- "anyhow",
- "bincode 1.3.3",
- "cfg-if",
- "colored",
- "curl",
- "hex",
- "indexmap",
- "itertools",
- "lazy_static",
- "parking_lot",
- "paste",
- "rand",
- "serde_json",
- "sha2",
- "snarkvm-curves 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-utilities",
  "thiserror",
 ]
 
@@ -2972,24 +2490,8 @@ dependencies = [
  "rand",
  "serde_json",
  "sha2",
- "snarkvm-curves 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "thiserror",
-]
-
-[[package]]
-name = "snarkvm-r1cs"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "anyhow",
- "cfg-if",
- "fxhash",
- "indexmap",
- "itertools",
- "snarkvm-curves 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-fields 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
+ "snarkvm-curves",
+ "snarkvm-utilities",
  "thiserror",
 ]
 
@@ -3003,37 +2505,10 @@ dependencies = [
  "fxhash",
  "indexmap",
  "itertools",
- "snarkvm-curves 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-fields 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
+ "snarkvm-curves",
+ "snarkvm-fields",
+ "snarkvm-utilities",
  "thiserror",
-]
-
-[[package]]
-name = "snarkvm-synthesizer"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "aleo-std",
- "anyhow",
- "blake2",
- "colored",
- "indexmap",
- "once_cell",
- "parking_lot",
- "paste",
- "rand",
- "rayon",
- "reqwest",
- "serde",
- "serde_json",
- "snarkvm-algorithms 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-circuit 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-console 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-curves 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-fields 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "tracing",
 ]
 
 [[package]]
@@ -3054,31 +2529,13 @@ dependencies = [
  "reqwest",
  "serde",
  "serde_json",
- "snarkvm-algorithms 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-circuit 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-console 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-curves 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-fields 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
- "snarkvm-utilities 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
+ "snarkvm-algorithms",
+ "snarkvm-circuit",
+ "snarkvm-console",
+ "snarkvm-curves",
+ "snarkvm-fields",
+ "snarkvm-utilities",
  "tracing",
-]
-
-[[package]]
-name = "snarkvm-utilities"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "aleo-std",
- "anyhow",
- "bincode 1.3.3",
- "num-bigint",
- "num_cpus",
- "rand",
- "rand_xorshift",
- "rayon",
- "serde",
- "snarkvm-utilities-derives 0.9.8 (git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda)",
- "thiserror",
 ]
 
 [[package]]
@@ -3095,18 +2552,8 @@ dependencies = [
  "rand_xorshift",
  "rayon",
  "serde",
- "snarkvm-utilities-derives 0.9.8 (git+https://github.com/harukama/snarkVM.git?branch=feat/snarkvm-cuda-tokio)",
+ "snarkvm-utilities-derives",
  "thiserror",
-]
-
-[[package]]
-name = "snarkvm-utilities-derives"
-version = "0.9.8"
-source = "git+https://github.com/AleoHQ/snarkVM.git?branch=feat/snarkvm-cuda#f0d8c5b8fb365101e566b2b1e9b997a9f075261c"
-dependencies = [
- "proc-macro2 1.0.47",
- "quote 1.0.21",
- "syn 1.0.103",
 ]
 
 [[package]]
